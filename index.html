@@ -1,0 +1,3385 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport"content="width=device-width, initial-scale=1.0">
+
+<meta
+name="description"
+content="Taejin Hwang is a Principal Memory Interface Architect specializing in high-speed memory receiver architecture, low-power design, silicon validation, and productization."
+>
+
+<meta name="author"content="Taejin Hwang">
+<meta name="theme-color"content="#06101d">
+
+<title>Taejin Hwang | Principal Memory Interface Architect</title>
+
+<style>
+
+/* ==========================================================
+   DESIGN SYSTEM
+   ========================================================== */
+
+:root {
+--bg: #06101d;
+--bg-alt: #091827;
+--panel: #0c2034;
+
+--text: #f3f8fc;
+--soft: #b8cad9;
+--muted: #8399ab;
+
+--primary: #35c8ff;
+--primary-light: #91e5ff;
+--secondary: #6d7cff;
+--success: #52e3b1;
+--warning: #ffc66a;
+
+--border: rgba(145,229,255,.15);
+--border-strong: rgba(145,229,255,.29);
+
+--gradient:
+linear-gradient(
+135deg,
+var(--primary),
+var(--secondary)
+    );
+
+--shadow:
+0 24px 70px rgba(0,0,0,.32);
+
+--max: 1180px;
+--radius: 20px;
+}
+
+/* ==========================================================
+   RESET
+   ========================================================== */
+
+* {
+box-sizing: border-box;
+}
+
+html {
+scroll-behavior: smooth;
+scroll-padding-top: 100px;
+}
+
+body {
+margin: 0;
+
+color: var(--text);
+
+background:
+radial-gradient(
+circle at 12% 2%,
+rgba(53,200,255,.13),
+transparent 28rem
+    ),
+radial-gradient(
+circle at 92% 20%,
+rgba(109,124,255,.11),
+transparent 30rem
+    ),
+var(--bg);
+
+font-family:
+    Inter,
+"Segoe UI",
+    Roboto,
+Helvetica,
+Arial,
+sans-serif;
+
+line-height: 1.65;
+}
+
+a {
+color: inherit;
+text-decoration: none;
+}
+
+h1,
+h2,
+h3,
+h4,
+p {
+margin-top: 0;
+}
+
+::selection {
+color: #04101a;
+background: var(--primary-light);
+}
+
+:focus-visible {
+outline: 3px solid var(--primary-light);
+outline-offset: 4px;
+}
+
+.container {
+width: min(
+calc(100% - 40px),
+var(--max)
+  );
+
+margin-inline: auto;
+}
+
+/* ==========================================================
+   COMMON SECTIONS
+   ========================================================== */
+
+.section {
+padding: 105px 0;
+}
+
+.section-alt {
+border-top: 1px solid var(--border);
+border-bottom: 1px solid var(--border);
+
+background:
+linear-gradient(
+180deg,
+rgba(9,31,51,.65),
+rgba(7,20,34,.40)
+    );
+}
+
+.section-header {
+display: grid;
+
+grid-template-columns:
+minmax(0,.9fr)
+minmax(320px,1.1fr);
+
+gap: 50px;
+align-items: end;
+
+margin-bottom: 48px;
+}
+
+.section-label {
+display: inline-flex;
+align-items: center;
+gap: 10px;
+
+margin-bottom: 15px;
+
+color: var(--primary-light);
+
+font-size: .76rem;
+font-weight: 800;
+letter-spacing: .16em;
+text-transform: uppercase;
+}
+
+.section-label::before {
+width: 26px;
+height: 2px;
+
+content: "";
+background: var(--gradient);
+}
+
+.section-title {
+margin-bottom: 0;
+
+font-size:
+clamp(2.1rem,5vw,4rem);
+
+line-height: 1.07;
+letter-spacing: -.045em;
+}
+
+.section-intro {
+max-width: 680px;
+margin: 0;
+
+color: var(--soft);
+font-size: 1.04rem;
+}
+
+.gradient-text {
+color: transparent;
+
+background: var(--gradient);
+background-clip: text;
+-webkit-background-clip: text;
+}
+
+/* ==========================================================
+   HEADER
+   ========================================================== */
+
+.site-header {
+position: sticky;
+top: 0;
+z-index: 1000;
+
+border-bottom: 1px solid var(--border);
+
+background:
+rgba(6,16,29,.95);
+
+backdrop-filter: blur(18px);
+}
+
+.nav {
+display: flex;
+align-items: center;
+justify-content: space-between;
+
+min-height: 76px;
+gap: 25px;
+}
+
+.brand {
+display: inline-flex;
+align-items: center;
+gap: 12px;
+
+flex-shrink: 0;
+}
+
+.brand-mark {
+display: grid;
+place-items: center;
+
+width: 40px;
+height: 40px;
+
+border-radius: 11px;
+
+color: #04101a;
+background: var(--gradient);
+
+font-size: .82rem;
+font-weight: 900;
+}
+
+.brand-copy {
+display: grid;
+line-height: 1.15;
+}
+
+.brand-name {
+font-weight: 800;
+}
+
+.brand-role {
+color: var(--muted);
+font-size: .71rem;
+}
+
+.nav-links {
+display: flex;
+flex-wrap: wrap;
+justify-content: flex-end;
+gap: 4px;
+
+margin: 0;
+padding: 0;
+
+list-style: none;
+}
+
+.nav-link {
+display: inline-flex;
+
+padding: 9px 10px;
+
+border-radius: 9px;
+
+color: var(--soft);
+
+font-size: .79rem;
+font-weight: 700;
+}
+
+.nav-link:hover {
+color: var(--text);
+background: rgba(53,200,255,.09);
+}
+
+.nav-link.contact {
+color: #04101a;
+background: var(--gradient);
+}
+
+/* ==========================================================
+   HERO
+   ========================================================== */
+
+.hero {
+min-height: calc(100vh - 76px);
+
+display: flex;
+align-items: center;
+
+padding: 80px 0 95px;
+}
+
+.hero-grid {
+display: grid;
+
+grid-template-columns:
+minmax(0,1.2fr)
+minmax(340px,.8fr);
+
+gap: 70px;
+align-items: center;
+}
+
+.eyebrow {
+display: inline-flex;
+align-items: center;
+gap: 10px;
+
+padding: 8px 13px;
+
+border: 1px solid var(--border-strong);
+border-radius: 999px;
+
+color: var(--primary-light);
+background: rgba(53,200,255,.06);
+
+font-size: .74rem;
+font-weight: 800;
+letter-spacing: .1em;
+text-transform: uppercase;
+}
+
+.eyebrow::before {
+width: 7px;
+height: 7px;
+
+border-radius: 50%;
+
+content: "";
+background: var(--success);
+
+box-shadow:
+0 0 0 5px rgba(82,227,177,.12);
+}
+
+.hero-title {
+margin: 24px 0;
+
+font-size:
+clamp(3rem,7.7vw,6.5rem);
+
+line-height: .97;
+letter-spacing: -.065em;
+}
+
+.hero-role {
+display: block;
+
+margin-top: 14px;
+
+font-size:
+clamp(1.8rem,4.6vw,4.1rem);
+
+line-height: 1.08;
+}
+
+.hero-tagline {
+max-width: 760px;
+
+margin-bottom: 17px;
+
+font-size:
+clamp(1.2rem,2.2vw,1.6rem);
+
+font-weight: 800;
+line-height: 1.45;
+}
+
+.hero-description {
+max-width: 760px;
+
+color: var(--soft);
+font-size: 1.05rem;
+}
+
+.buttons {
+display: flex;
+flex-wrap: wrap;
+gap: 13px;
+
+margin-top: 28px;
+}
+
+.button {
+display: inline-flex;
+align-items: center;
+
+min-height: 50px;
+padding: 13px 20px;
+
+border: 1px solid transparent;
+border-radius: 12px;
+
+font-weight: 800;
+}
+
+.button-primary {
+color: #04101a;
+background: var(--gradient);
+}
+
+.button-secondary {
+border-color: var(--border-strong);
+background: rgba(10,31,50,.65);
+}
+
+.hero-meta {
+display: flex;
+flex-wrap: wrap;
+gap: 12px 24px;
+
+margin-top: 31px;
+
+color: var(--muted);
+font-size: .87rem;
+}
+
+.hero-meta span::before {
+display: inline-block;
+
+width: 7px;
+height: 7px;
+
+margin-right: 8px;
+
+border-radius: 50%;
+
+content: "";
+background: var(--primary);
+}
+
+/* ==========================================================
+   ARCHITECTURE PROCESS
+   ========================================================== */
+
+.process-panel {
+padding: 28px;
+
+border: 1px solid var(--border);
+border-radius: 30px;
+
+background:
+linear-gradient(
+145deg,
+rgba(16,43,68,.9),
+rgba(7,23,39,.78)
+    );
+
+box-shadow: var(--shadow);
+}
+
+.process-title {
+display: flex;
+justify-content: space-between;
+
+margin-bottom: 25px;
+
+color: var(--primary-light);
+
+font-size: .72rem;
+font-weight: 800;
+letter-spacing: .12em;
+text-transform: uppercase;
+}
+
+.process-list {
+display: grid;
+gap: 15px;
+}
+
+.process-step {
+display: grid;
+
+grid-template-columns:
+42px
+1fr;
+
+gap: 13px;
+align-items: center;
+
+padding: 14px;
+
+border: 1px solid var(--border);
+border-radius: 15px;
+
+background:
+rgba(5,20,34,.74);
+}
+
+.process-number {
+display: grid;
+place-items: center;
+
+width: 38px;
+height: 38px;
+
+border: 1px solid var(--border-strong);
+border-radius: 11px;
+
+color: var(--primary-light);
+background: rgba(53,200,255,.07);
+
+font-size: .71rem;
+font-weight: 900;
+}
+
+.process-step h3 {
+margin-bottom: 1px;
+
+font-size: .88rem;
+}
+
+.process-step p {
+margin: 0;
+
+color: var(--muted);
+font-size: .69rem;
+}
+
+/* ==========================================================
+   METRICS
+   ========================================================== */
+
+.metrics {
+display: grid;
+grid-template-columns: repeat(4,1fr);
+
+border: 1px solid var(--border);
+border-radius: var(--radius);
+
+background: rgba(9,29,48,.93);
+
+box-shadow: var(--shadow);
+
+overflow: hidden;
+}
+
+.metric {
+padding: 28px 24px;
+
+border-right: 1px solid var(--border);
+}
+
+.metric:last-child {
+border-right: 0;
+}
+
+.metric strong {
+display: block;
+
+margin-bottom: 7px;
+
+font-size:
+clamp(1.6rem,3vw,2.35rem);
+
+line-height: 1;
+}
+
+.metric strong span {
+color: var(--primary);
+}
+
+.metric small {
+color: var(--muted);
+
+font-size: .7rem;
+font-weight: 800;
+letter-spacing: .07em;
+text-transform: uppercase;
+}
+
+/* ==========================================================
+   ARCHITECTURE CASES
+   ========================================================== */
+
+.case-list {
+display: grid;
+gap: 20px;
+}
+
+.case {
+border: 1px solid var(--border);
+border-radius: var(--radius);
+
+background:
+linear-gradient(
+145deg,
+rgba(15,41,66,.84),
+rgba(7,23,39,.8)
+    );
+
+overflow: hidden;
+}
+
+.case[open] {
+border-color: var(--border-strong);
+box-shadow: var(--shadow);
+}
+
+.case-summary {
+display: grid;
+
+grid-template-columns:
+64px 1fr auto;
+
+gap: 20px;
+align-items: center;
+
+padding: 25px 28px;
+
+cursor: pointer;
+list-style: none;
+}
+
+.case-summary::-webkit-details-marker {
+display: none;
+}
+
+.case-summary::after {
+content: "+";
+
+color: var(--primary);
+font-size: 1.7rem;
+}
+
+.case[open] .case-summary::after {
+content: "−";
+}
+
+.case-number {
+display: grid;
+place-items: center;
+
+width: 54px;
+height: 54px;
+
+border: 1px solid var(--border-strong);
+border-radius: 14px;
+
+color: var(--primary-light);
+background: rgba(53,200,255,.07);
+
+font-size: .78rem;
+font-weight: 900;
+}
+
+.case-summary h3 {
+margin-bottom: 3px;
+
+font-size:
+clamp(1.25rem,2.4vw,1.75rem);
+}
+
+.case-summary p {
+margin: 0;
+
+color: var(--muted);
+font-size: .85rem;
+}
+
+.case-content {
+padding:
+0
+28px
+30px
+112px;
+}
+
+.case-grid {
+display: grid;
+grid-template-columns: repeat(2,1fr);
+gap: 15px;
+}
+
+.case-block {
+padding: 22px;
+
+border: 1px solid var(--border);
+border-radius: 15px;
+
+background:
+rgba(5,20,34,.53);
+}
+
+.case-block.wide {
+grid-column: 1 / -1;
+}
+
+.case-label {
+display: block;
+
+margin-bottom: 9px;
+
+color: var(--primary);
+
+font-size: .67rem;
+font-weight: 900;
+letter-spacing: .1em;
+text-transform: uppercase;
+}
+
+.case-block h4 {
+margin-bottom: 8px;
+}
+
+.case-block p,
+.case-block li {
+color: var(--muted);
+font-size: .85rem;
+}
+
+.case-block ul {
+display: grid;
+gap: 7px;
+
+margin-bottom: 0;
+}
+
+/* ==========================================================
+   RESULTS
+   ========================================================== */
+
+.result-grid {
+display: grid;
+grid-template-columns: repeat(3,1fr);
+gap: 10px;
+
+margin-top: 15px;
+}
+
+.result {
+padding: 15px;
+
+border: 1px solid var(--border);
+border-radius: 13px;
+
+background:
+rgba(10,32,52,.67);
+}
+
+.result strong {
+display: block;
+
+color: var(--primary-light);
+}
+
+.result span {
+color: var(--muted);
+
+font-size: .68rem;
+font-weight: 750;
+text-transform: uppercase;
+}
+
+/* ==========================================================
+   METHOD / EXPERTISE
+   ========================================================== */
+
+.method-grid {
+display: grid;
+grid-template-columns: repeat(5,1fr);
+gap: 13px;
+}
+
+.method-step,
+.info-card {
+padding: 23px;
+
+border: 1px solid var(--border);
+border-radius: var(--radius);
+
+background:
+linear-gradient(
+145deg,
+rgba(14,39,63,.76),
+rgba(6,21,36,.76)
+    );
+}
+
+.method-number,
+.card-number {
+display: grid;
+place-items: center;
+
+width: 40px;
+height: 40px;
+
+margin-bottom: 20px;
+
+border: 1px solid var(--border-strong);
+border-radius: 11px;
+
+color: var(--primary-light);
+background: rgba(53,200,255,.07);
+
+font-size: .71rem;
+font-weight: 900;
+}
+
+.method-step h3,
+.info-card h3 {
+margin-bottom: 9px;
+
+font-size: 1.03rem;
+}
+
+.method-step p,
+.info-card li {
+color: var(--muted);
+font-size: .82rem;
+}
+
+.method-quote {
+margin-top: 30px;
+padding: 23px;
+
+border-left: 3px solid var(--primary);
+border-radius: 0 15px 15px 0;
+
+background: rgba(53,200,255,.055);
+
+font-size:
+clamp(1.15rem,2.4vw,1.55rem);
+
+font-weight: 800;
+}
+
+.card-grid {
+display: grid;
+grid-template-columns: repeat(3,1fr);
+gap: 16px;
+}
+
+.info-card ul {
+display: grid;
+gap: 7px;
+
+margin-bottom: 0;
+padding-left: 18px;
+}
+
+/* ==========================================================
+   IMPACT
+   ========================================================== */
+
+.impact-pyramid {
+display: grid;
+gap: 13px;
+
+max-width: 940px;
+margin-inline: auto;
+}
+
+.impact-level {
+width: 100%;
+
+padding: 25px 28px;
+
+border: 1px solid var(--border);
+border-radius: 17px;
+
+background:
+linear-gradient(
+135deg,
+rgba(14,43,68,.87),
+rgba(7,25,41,.83)
+    );
+}
+
+.impact-level.top {
+width: 68%;
+
+margin-inline: auto;
+
+border-color: var(--border-strong);
+}
+
+.impact-level.middle {
+width: 84%;
+margin-inline: auto;
+}
+
+.impact-label {
+display: block;
+margin-bottom: 6px;
+
+color: var(--primary-light);
+
+font-size: .67rem;
+font-weight: 900;
+letter-spacing: .11em;
+text-transform: uppercase;
+}
+
+.impact-level h3 {
+margin-bottom: 6px;
+}
+
+.impact-level p {
+margin: 0;
+
+color: var(--muted);
+font-size: .87rem;
+}
+
+/* ==========================================================
+   CAREER
+   ========================================================== */
+
+.timeline {
+position: relative;
+
+max-width: 980px;
+margin-inline: auto;
+}
+
+.timeline::before {
+position: absolute;
+top: 0;
+bottom: 0;
+left: 19px;
+
+width: 2px;
+
+content: "";
+
+background:
+linear-gradient(
+var(--primary),
+var(--secondary),
+transparent
+    );
+}
+
+.timeline-item {
+position: relative;
+
+display: grid;
+
+grid-template-columns:
+40px 1fr;
+
+gap: 25px;
+
+padding-bottom: 42px;
+}
+
+.timeline-dot {
+position: relative;
+z-index: 2;
+
+width: 40px;
+height: 40px;
+
+border: 7px solid var(--bg);
+border-radius: 50%;
+
+background: var(--gradient);
+}
+
+.timeline-card {
+padding: 28px;
+
+border: 1px solid var(--border);
+border-radius: var(--radius);
+
+background:
+rgba(9,29,48,.67);
+}
+
+.timeline-heading {
+display: flex;
+justify-content: space-between;
+flex-wrap: wrap;
+gap: 15px;
+
+margin-bottom: 7px;
+}
+
+.timeline-heading h3 {
+margin: 0;
+}
+
+.timeline-period {
+color: var(--primary-light);
+
+font-size: .72rem;
+font-weight: 850;
+text-transform: uppercase;
+}
+
+.company {
+margin-bottom: 17px;
+
+color: var(--soft);
+font-weight: 750;
+}
+
+.timeline-card p,
+.timeline-card li {
+color: var(--muted);
+font-size: .87rem;
+}
+
+/* ==========================================================
+   PUBLICATIONS
+   ========================================================== */
+
+.publication-grid {
+display: grid;
+grid-template-columns: repeat(2,1fr);
+gap: 16px;
+}
+
+.publication-card {
+display: flex;
+flex-direction: column;
+
+min-height: 280px;
+padding: 27px;
+
+border: 1px solid var(--border);
+border-radius: var(--radius);
+
+background:
+linear-gradient(
+145deg,
+rgba(14,40,64,.76),
+rgba(6,22,37,.75)
+    );
+}
+
+.publication-type {
+margin-bottom: 17px;
+
+color: var(--primary-light);
+
+font-size: .67rem;
+font-weight: 900;
+letter-spacing: .11em;
+text-transform: uppercase;
+}
+
+.publication-card p {
+color: var(--muted);
+font-size: .85rem;
+}
+
+.tags {
+display: flex;
+flex-wrap: wrap;
+gap: 7px;
+
+margin-top: auto;
+}
+
+.tag {
+padding: 6px 9px;
+
+border: 1px solid var(--border);
+border-radius: 999px;
+
+color: var(--soft);
+
+font-size: .65rem;
+}
+
+.verification-note {
+margin-top: 22px;
+padding: 17px;
+
+border-left: 3px solid var(--warning);
+
+color: var(--muted);
+background: rgba(255,198,106,.05);
+
+font-size: .8rem;
+}
+
+/* ==========================================================
+   ABOUT / CONTACT
+   ========================================================== */
+
+.about-grid {
+display: grid;
+
+grid-template-columns:
+minmax(300px,.75fr)
+minmax(0,1.25fr);
+
+gap: 65px;
+}
+
+.about-quote {
+padding: 29px;
+
+border: 1px solid var(--border);
+border-radius: var(--radius);
+
+background:
+rgba(12,32,52,.8);
+}
+
+.about-quote blockquote {
+margin:
+0
+0
+20px;
+
+font-size:
+clamp(1.35rem,2.5vw,1.95rem);
+
+font-weight: 850;
+line-height: 1.36;
+}
+
+.about-quote p,
+.about-copy p {
+color: var(--soft);
+}
+
+.contact-panel {
+display: grid;
+
+grid-template-columns:
+minmax(0,1.2fr)
+minmax(300px,.8fr);
+
+gap: 48px;
+
+padding: 52px;
+
+border: 1px solid var(--border-strong);
+border-radius: 30px;
+
+background:
+linear-gradient(
+135deg,
+rgba(15,47,75,.96),
+rgba(6,24,41,.96)
+    );
+
+box-shadow: var(--shadow);
+}
+
+.contact-panel h2 {
+margin:
+16px
+0
+18px;
+
+font-size:
+clamp(2.1rem,5vw,4.2rem);
+
+line-height: 1.04;
+}
+
+.contact-panel p {
+color: var(--soft);
+}
+
+.contact-actions {
+display: grid;
+align-content: center;
+gap: 11px;
+}
+
+.contact-link {
+display: flex;
+align-items: center;
+justify-content: space-between;
+
+gap: 15px;
+
+padding: 16px 18px;
+
+border: 1px solid var(--border);
+border-radius: 13px;
+
+color: var(--soft);
+background: rgba(5,20,34,.57);
+}
+
+.contact-link:hover {
+border-color: var(--primary);
+background: rgba(53,200,255,.08);
+}
+
+.contact-label {
+display: block;
+
+color: var(--muted);
+
+font-size: .63rem;
+font-weight: 850;
+letter-spacing: .1em;
+text-transform: uppercase;
+}
+
+.contact-value {
+font-size: .87rem;
+font-weight: 750;
+}
+
+.contact-arrow {
+color: var(--primary);
+font-size: 1.2rem;
+}
+
+/* ==========================================================
+   FOOTER
+   ========================================================== */
+
+.site-footer {
+padding: 31px 0;
+
+border-top: 1px solid var(--border);
+}
+
+.footer-content {
+display: flex;
+justify-content: space-between;
+gap: 22px;
+
+color: var(--muted);
+font-size: .76rem;
+}
+
+.footer-links {
+display: flex;
+flex-wrap: wrap;
+gap: 16px;
+}
+
+.footer-links a:hover {
+color: var(--primary);
+}
+
+/* ==========================================================
+   RESPONSIVE
+   ========================================================== */
+
+@media (max-width: 1050px) {
+
+.hero-grid,
+.section-header,
+.about-grid,
+.contact-panel {
+grid-template-columns: 1fr;
+  }
+
+.metrics {
+grid-template-columns: repeat(2,1fr);
+  }
+
+.method-grid {
+grid-template-columns: repeat(2,1fr);
+  }
+
+.card-grid {
+grid-template-columns: repeat(2,1fr);
+  }
+}
+
+@media (max-width: 900px) {
+
+.nav {
+align-items: flex-start;
+flex-direction: column;
+
+padding: 14px 0;
+  }
+
+.nav-links {
+justify-content: flex-start;
+  }
+
+.site-header {
+position: relative;
+  }
+
+.publication-grid {
+grid-template-columns: 1fr;
+  }
+
+.case-content {
+padding-left: 28px;
+  }
+}
+
+@media (max-width: 650px) {
+
+.container {
+width:
+calc(100% - 28px);
+  }
+
+.section {
+padding: 78px 0;
+  }
+
+.hero {
+min-height: auto;
+padding: 60px 0;
+  }
+
+.hero-title {
+font-size:
+clamp(3rem,15vw,4.3rem);
+  }
+
+.brand-role {
+display: none;
+  }
+
+.metrics,
+.method-grid,
+.card-grid,
+.case-grid,
+.result-grid {
+grid-template-columns: 1fr;
+  }
+
+.metric {
+border-right: 0;
+border-bottom: 1px solid var(--border);
+  }
+
+.case-content,
+.contact-panel {
+padding: 21px;
+  }
+
+.case-summary {
+grid-template-columns:
+48px
+1fr
+auto;
+
+gap: 13px;
+
+padding: 20px;
+  }
+
+.impact-level,
+.impact-level.top,
+.impact-level.middle {
+width: 100%;
+  }
+
+.footer-content {
+flex-direction: column;
+  }
+}
+
+</style>
+</head>
+
+<body id="top">
+
+<!-- ========================================================
+     HEADER
+     ======================================================== -->
+
+<header class="site-header">
+
+<nav
+class="nav container"
+aria-label="Primary navigation"
+>
+
+<a
+class="brand"
+href="#top"
+aria-label="Go to home"
+>
+<span class="brand-mark">TH</span>
+
+<span class="brand-copy">
+<span class="brand-name">
+          Taejin Hwang
+</span>
+
+<span class="brand-role">
+          Principal Memory Interface Architect
+</span>
+</span>
+</a>
+
+<ul class="nav-links">
+
+<li>
+<a class="nav-link"href="#architectures">
+          Architectures
+</a>
+</li>
+
+<li>
+<a class="nav-link"href="#method">
+          Method
+</a>
+</li>
+
+<li>
+<a class="nav-link"href="#impact">
+          Impact
+</a>
+</li>
+
+<li>
+<a class="nav-link"href="#expertise">
+          Expertise
+</a>
+</li>
+
+<li>
+<a class="nav-link"href="#career">
+          Career
+</a>
+</li>
+
+<!-- Publications navigation hidden until verified -->
+
+<li hidden>
+<a class="nav-link"href="#publications">
+          Publications
+</a>
+</li>
+
+<li>
+<a class="nav-link"href="#about">
+          About
+</a>
+</li>
+
+<li>
+<a
+class="nav-link contact"
+href="#contact"
+>
+          Contact
+</a>
+</li>
+
+</ul>
+
+</nav>
+
+</header>
+
+<main>
+
+<!-- ========================================================
+     HERO
+     ======================================================== -->
+
+<section class="hero">
+
+<div class="container hero-grid">
+
+<div>
+
+<span class="eyebrow">
+        Principal-Level Architecture Leadership
+</span>
+
+<h1 class="hero-title">
+
+        Taejin
+
+<span class="gradient-text">
+          Hwang
+</span>
+
+<span class="hero-role">
+
+          Principal Memory
+
+<span class="gradient-text">
+            Interface Architect
+</span>
+
+</span>
+
+</h1>
+
+<p class="hero-tagline">
+        From first principles to silicon-proven
+        memory interface architecture.
+</p>
+
+<p class="hero-description">
+        More than 20 years of experience in high-speed memory
+        interfaces, spanning architecture definition, circuit
+        design, signal-integrity feasibility, silicon validation,
+        product bring-up, and reusable design methodology.
+</p>
+
+<div class="buttons">
+
+<a
+class="button button-primary"
+href="#architectures"
+>
+          Explore Selected Architectures →
+</a>
+
+<a
+class="button button-secondary"
+href="#method"
+>
+          View Engineering Method
+</a>
+
+</div>
+
+<div class="hero-meta">
+
+<span>
+          Multi-Generation DDR5 Rx Architecture
+</span>
+
+<span>
+          HBM High-Speed Receiver Architecture
+</span>
+
+<span>
+          Silicon-to-Product Execution
+</span>
+
+</div>
+
+</div>
+
+<aside
+class="process-panel"
+aria-label="Architecture development process"
+>
+
+<div class="process-title">
+
+<span>
+          Architecture Process
+</span>
+
+<span>
+          Silicon Focused
+</span>
+
+</div>
+
+<div class="process-list">
+
+<div class="process-step">
+
+<span class="process-number">
+            01
+</span>
+
+<div>
+<h3>
+              Fundamentals
+</h3>
+
+<p>
+              Identify the underlying limiting mechanism
+</p>
+</div>
+
+</div>
+
+<div class="process-step">
+
+<span class="process-number">
+            02
+</span>
+
+<div>
+<h3>
+              Design Space
+</h3>
+
+<p>
+              Find the overlooked degree of freedom
+</p>
+</div>
+
+</div>
+
+<div class="process-step">
+
+<span class="process-number">
+            03
+</span>
+
+<div>
+<h3>
+              Architecture
+</h3>
+
+<p>
+              Select the simplest effective solution
+</p>
+</div>
+
+</div>
+
+<div class="process-step">
+
+<span class="process-number">
+            04
+</span>
+
+<div>
+<h3>
+              Silicon
+</h3>
+
+<p>
+              Validate power, timing, and operating margin
+</p>
+</div>
+
+</div>
+
+<div class="process-step">
+
+<span class="process-number">
+            05
+</span>
+
+<div>
+<h3>
+              Productization
+</h3>
+
+<p>
+              Convert results into reusable methodology
+</p>
+</div>
+
+</div>
+
+</div>
+
+</aside>
+
+</div>
+
+</section>
+
+<!-- ========================================================
+     EXECUTIVE METRICS
+     ======================================================== -->
+
+<section
+class="container"
+aria-label="Career highlights"
+>
+
+<div class="metrics">
+
+<div class="metric">
+
+<strong>
+        20<span>+</span>
+</strong>
+
+<small>
+        Years in Memory-Interface Engineering
+</small>
+
+</div>
+
+<div class="metric">
+
+<strong>
+        Multi-Generation
+</strong>
+
+<small>
+        DDR5 Rx Architecture
+</small>
+
+</div>
+
+<div class="metric">
+
+<strong>
+        HBM
+</strong>
+
+<small>
+        High-Speed Receiver Architecture
+</small>
+
+</div>
+
+<div class="metric">
+
+<strong>
+        Silicon<span>→</span>Product
+</strong>
+
+<small>
+        Architecture · Validation · Methodology
+</small>
+
+</div>
+
+</div>
+
+</section>
+
+<!-- ========================================================
+     ARCHITECTURES
+     ======================================================== -->
+
+<section
+class="section section-alt"
+id="architectures"
+>
+
+<div class="container">
+
+<header class="section-header">
+
+<div>
+
+<span class="section-label">
+      Selected Architectures
+</span>
+
+<h2 class="section-title">
+
+      Three problems solved at the
+
+<span class="gradient-text">
+        architecture level
+</span>
+
+</h2>
+
+</div>
+
+<p class="section-intro">
+    Silicon-validated examples of returning to fundamentals,
+    identifying an exploitable design variable, and translating
+    the resulting insight into production-ready architecture.
+</p>
+
+</header>
+
+<div class="case-list">
+
+<!-- CASE 01 -->
+
+<details class="case" open>
+
+<summary class="case-summary">
+
+<span class="case-number">
+    01
+</span>
+
+<span>
+<h3>
+      Global Current-Bias Architecture
+</h3>
+
+<p>
+      Multi-voltage robustness through
+      current-domain biasing
+</p>
+</span>
+
+</summary>
+
+<div class="case-content">
+
+<div class="case-grid">
+
+<div class="case-block">
+
+<span class="case-label">
+    Challenge
+</span>
+
+<h4>
+    Supply-dependent bias behavior
+</h4>
+
+<p>
+    A voltage-based bias scheme created increased current
+    variation and performance degradation as supply voltage
+    decreased, increasing tuning requirements across operating
+    conditions.
+</p>
+
+</div>
+
+<div class="case-block">
+
+<span class="case-label">
+    Architectural Insight
+</span>
+
+<h4>
+    Move the reference to the current domain
+</h4>
+
+<p>
+    Reduce direct dependency on the supply rail by distributing
+    a current-domain reference rather than relying on a
+    voltage-domain bias relationship.
+</p>
+
+</div>
+
+<div class="case-block">
+
+<span class="case-label">
+    Ownership
+</span>
+
+<ul>
+<li>Quantified transient bias-fluctuation risk.</li>
+
+<li>
+      Derived decoupling requirements by buffer type.
+</li>
+
+<li>
+      Established current-bias placement guidance.
+</li>
+
+<li>
+      Led feasibility verification and silicon bring-up.
+</li>
+</ul>
+
+</div>
+
+<div class="case-block">
+
+<span class="case-label">
+    Result
+</span>
+
+<ul>
+<li>
+      Improved setup and hold margin behavior.
+</li>
+
+<li>
+      Reduced current under selected high-voltage conditions.
+</li>
+
+<li>
+      Preserved performance across supported supply conditions.
+</li>
+</ul>
+
+</div>
+
+<div class="case-block wide">
+
+<span class="case-label">
+    Scope of Impact
+</span>
+
+<p>
+    The central concept originated through team collaboration.
+    My primary ownership covered feasibility analysis,
+    quantitative risk assessment, implementation guidance,
+    silicon verification, and progression toward product
+    adoption.
+</p>
+
+<div class="result-grid">
+
+<div class="result">
+<strong>Robust</strong>
+<span>Multi-Voltage Behavior</span>
+</div>
+
+<div class="result">
+<strong>Verified</strong>
+<span>On Silicon</span>
+</div>
+
+<div class="result">
+<strong>Scaled</strong>
+<span>To Successor Products</span>
+</div>
+
+</div>
+
+</div>
+
+</div>
+</div>
+
+</details>
+
+<!-- CASE 02 -->
+
+<details class="case">
+
+<summary class="case-summary">
+
+<span class="case-number">
+    02
+</span>
+
+<span>
+
+<h3>
+      EQ Margin Architecture
+</h3>
+
+<p>
+      Receiver margin improvement without
+      additional power or circuit complexity
+</p>
+
+</span>
+
+</summary>
+
+<div class="case-content">
+
+<div class="case-grid">
+
+<div class="case-block">
+
+<span class="case-label">
+    Challenge
+</span>
+
+<h4>
+    Conventional fixes created another problem
+</h4>
+
+<p>
+    Increasing bias current would raise power while adding
+    circuit blocks or control logic would increase
+    implementation complexity.
+</p>
+
+</div>
+
+<div class="case-block">
+
+<span class="case-label">
+    Architectural Insight
+</span>
+
+<h4>
+    Treat the gain-current trade-off as a design lever
+</h4>
+
+<p>
+    Mapping gain, current, and margin relationships exposed a
+    design variable that could be exploited through equalization
+    instead of additional hardware.
+</p>
+
+</div>
+
+<div class="case-block wide">
+
+<span class="case-label">
+    First-Principles Approach
+</span>
+
+<ul>
+<li>
+      Analyzed fundamental receiver operation.
+</li>
+
+<li>
+      Mapped gain, current, and voltage-margin
+      interdependencies.
+</li>
+
+<li>
+      Identified an exploitable degree of freedom.
+</li>
+
+<li>
+      Developed a minimum-complexity compensation concept.
+</li>
+
+<li>
+      Validated the concept during silicon bring-up.
+</li>
+</ul>
+
+</div>
+
+<div class="case-block wide">
+
+<span class="case-label">
+    Result
+</span>
+
+<div class="result-grid">
+
+<div class="result">
+<strong>Improved</strong>
+<span>Voltage Margin</span>
+</div>
+
+<div class="result">
+<strong>Zero</strong>
+<span>Additional Bias Current</span>
+</div>
+
+<div class="result">
+<strong>Zero</strong>
+<span>New Circuit Blocks</span>
+</div>
+
+</div>
+
+</div>
+
+</div>
+</div>
+
+</details>
+
+<!-- ========================================================
+     CASE 03
+     DDR5 RX ARCHITECTURE REDESIGN
+     ======================================================== -->
+
+<details class="case">
+
+<summary class="case-summary">
+
+<span class="case-number">
+      03
+</span>
+
+<span>
+
+<h3>
+        DDR5 Rx Architecture Redesign
+        for Power &amp; Margin Scaling
+</h3>
+
+<p>
+        Cross-generation receiver architecture,
+        SI feasibility, margin improvement,
+        and power-performance scaling
+</p>
+
+</span>
+
+</summary>
+
+<div class="case-content">
+
+<div class="case-grid">
+
+<div class="case-block">
+
+<span class="case-label">
+          Challenge
+</span>
+
+<h4>
+          Scaling performance without sacrificing
+          power or receiver margin
+</h4>
+
+<p>
+          Successive DDR5 product generations required receiver
+          architectures capable of supporting higher-performance
+          targets while preserving timing behavior, signal-integrity
+          feasibility, power efficiency, and product operating margin.
+</p>
+
+</div>
+
+<div class="case-block">
+
+<span class="case-label">
+          Architecture Ownership
+</span>
+
+<h4>
+          Cross-generation DDR5 Rx-path architecture
+</h4>
+
+<p>
+          Led receiver-path architecture and feasibility evaluation
+          across multiple DDR5 product generations, connecting circuit
+          behavior with timing, signal integrity, operating margin,
+          and implementation constraints.
+</p>
+
+</div>
+
+<div class="case-block">
+
+<span class="case-label">
+          Margin Scaling
+</span>
+
+<h4>
+          DQ receiver-margin improvement
+</h4>
+
+<p>
+          Improved DQ receiver margin through Rx-path redesign
+          and timing-alignment strategy, addressing architecture-level
+          interactions among circuit response, timing behavior,
+          and system margin.
+</p>
+
+</div>
+
+<div class="case-block">
+
+<span class="case-label">
+          Power Scaling
+</span>
+
+<h4>
+          Receiver-wide power optimization
+</h4>
+
+<p>
+          Drove receiver-wide power optimization while preserving
+          timing, signal-integrity, and operating margins across
+          multiple DDR5 product generations.
+</p>
+
+</div>
+
+<div class="case-block wide">
+
+<span class="case-label">
+          SI Feasibility &amp; Product Correlation
+</span>
+
+<h4>
+          Connecting circuit behavior to product margin
+</h4>
+
+<p>
+          Led receiver SI feasibility and correlated circuit response,
+          timing behavior, and system-level margin to guide architecture
+          decisions, implementation priorities, and product issue
+          resolution.
+</p>
+
+</div>
+
+<div class="case-block wide">
+
+<span class="case-label">
+          Next-Generation Architecture
+</span>
+
+<h4>
+          DQS / CLK receiver concepts
+</h4>
+
+<p>
+          Developed next-generation DQS / CLK receiver concepts
+          addressing future speed, robustness, power, and
+          implementation requirements.
+</p>
+
+</div>
+
+<div class="case-block wide">
+
+<span class="case-label">
+          Result
+</span>
+
+<div class="result-grid">
+
+<div class="result">
+
+<strong>
+              Improved
+</strong>
+
+<span>
+              DQ Receiver Margin
+</span>
+
+</div>
+
+<div class="result">
+
+<strong>
+              Reduced
+</strong>
+
+<span>
+              Receiver Power
+</span>
+
+</div>
+
+<div class="result">
+
+<strong>
+              Preserved
+</strong>
+
+<span>
+              Timing &amp; SI Margins
+</span>
+
+</div>
+
+</div>
+
+</div>
+
+<div class="case-block wide">
+
+<span class="case-label">
+          Scope of Impact
+</span>
+
+<p>
+          Extended individual receiver improvements into
+          cross-generation architecture decisions, feasibility
+          methodology, implementation guidance, and reusable
+          technical direction for subsequent receiver development.
+</p>
+
+</div>
+
+</div>
+
+</div>
+
+</details>
+
+</div>
+</div>
+</section>
+
+<!-- ========================================================
+     METHOD
+     ======================================================== -->
+
+<section
+class="section"
+id="method"
+>
+
+<div class="container">
+
+<header class="section-header">
+
+<div>
+
+<span class="section-label">
+    My Engineering Method
+</span>
+
+<h2 class="section-title">
+
+    Different problems.
+
+<span class="gradient-text">
+      One repeatable process.
+</span>
+
+</h2>
+
+</div>
+
+<p class="section-intro">
+  A disciplined approach to identifying the real constraint,
+  finding exploitable design space, and selecting the simplest
+  architecture that produces measurable product value.
+</p>
+
+</header>
+
+<div class="method-grid">
+
+<article class="method-step">
+
+<span class="method-number">
+    01
+</span>
+
+<h3>
+    Analyze Fundamentals
+</h3>
+
+<p>
+    Start from device, circuit, timing, and system behavior.
+</p>
+
+</article>
+
+<article class="method-step">
+
+<span class="method-number">
+    02
+</span>
+
+<h3>
+    Find the Degree of Freedom
+</h3>
+
+<p>
+    Map the design space and identify relationships conventional
+    optimization has overlooked.
+</p>
+
+</article>
+
+<article class="method-step">
+
+<span class="method-number">
+    03
+</span>
+
+<h3>
+    Choose the Simplest Architecture
+</h3>
+
+<p>
+    Add complexity only when the additional complexity creates
+    measurable product value.
+</p>
+
+</article>
+
+<article class="method-step">
+
+<span class="method-number">
+    04
+</span>
+
+<h3>
+    Verify on Silicon
+</h3>
+
+<p>
+    Validate timing, power, margin, variation, and operating
+    behavior under implementation conditions.
+</p>
+
+</article>
+
+<article class="method-step">
+
+<span class="method-number">
+    05
+</span>
+
+<h3>
+    Productize and Scale
+</h3>
+
+<p>
+    Convert solutions into constraints, guidelines, evaluation
+    frameworks, and architecture baselines.
+</p>
+
+</article>
+
+</div>
+
+<div class="method-quote">
+  Find the overlooked degree of freedom, validate it on silicon,
+  and leave behind a stronger architecture for the next design.
+</div>
+
+</div>
+
+</section>
+
+<!-- ========================================================
+     IMPACT
+     ======================================================== -->
+
+<section
+class="section section-alt"
+id="impact"
+>
+
+<div class="container">
+
+<header class="section-header">
+
+<div>
+
+<span class="section-label">
+    Scope of Impact
+</span>
+
+<h2 class="section-title">
+
+    From delivered silicon to
+
+<span class="gradient-text">
+      architecture baseline
+</span>
+
+</h2>
+
+</div>
+
+<p class="section-intro">
+  Principal-level impact extends beyond one circuit block.
+  The broader objective is improving how future products
+  and teams make engineering decisions.
+</p>
+
+</header>
+
+<div class="impact-pyramid">
+
+<article class="impact-level top">
+
+<span class="impact-label">
+    Highest Leverage
+</span>
+
+<h3>
+    Architecture Baseline
+</h3>
+
+<p>
+    Architecture decisions and evaluation methods carried
+    into successor programs.
+</p>
+
+</article>
+
+<article class="impact-level middle">
+
+<span class="impact-label">
+    Organizational Scale
+</span>
+
+<h3>
+    Team Enablement
+</h3>
+
+<p>
+    Receiver constraints, placement guidance, evaluation
+    frameworks, and cross-functional technical direction.
+</p>
+
+</article>
+
+<article class="impact-level">
+
+<span class="impact-label">
+    Execution Foundation
+</span>
+
+<h3>
+    Silicon Delivery
+</h3>
+
+<p>
+    Concept feasibility, implementation, bring-up,
+    failure analysis, performance confirmation,
+    and product integration.
+</p>
+
+</article>
+
+</div>
+
+</div>
+
+</section>
+
+<!-- ========================================================
+     TECHNICAL EXPERTISE
+     ======================================================== -->
+
+<section
+class="section"
+id="expertise"
+>
+
+<div class="container">
+
+<header class="section-header">
+
+<div>
+
+<span class="section-label">
+    Technical Expertise
+</span>
+
+<h2 class="section-title">
+
+    Deep circuit knowledge with
+
+<span class="gradient-text">
+      system-level judgment
+</span>
+
+</h2>
+
+</div>
+
+<p class="section-intro">
+  Technical range spanning architecture, analog and
+  mixed-signal design, power optimization, signal margin,
+  silicon correlation, product execution, and technical
+  leadership.
+</p>
+
+</header>
+
+<div class="card-grid">
+
+<article class="info-card">
+
+<span class="card-number">
+    01
+</span>
+
+<h3>
+    Interface Architecture
+</h3>
+
+<ul>
+<li>
+      DDR DQ, DQS, CK, and CA receiver architecture
+</li>
+
+<li>
+      HBM receiver architecture
+</li>
+
+<li>
+      LPDDR and NAND-related interfaces
+</li>
+
+<li>
+      Multi-stage high-speed input buffers
+</li>
+
+<li>
+      Architecture feasibility and trade-off analysis
+</li>
+</ul>
+
+</article>
+
+<article class="info-card">
+
+<span class="card-number">
+    02
+</span>
+
+<h3>
+    Analog and Mixed-Signal Design
+</h3>
+
+<ul>
+<li>Differential receiver front ends</li>
+<li>VGA and gain-control structures</li>
+<li>Latch and decision circuits</li>
+<li>Bias and replica-bias networks</li>
+<li>PVT-aware circuit optimization</li>
+</ul>
+
+</article>
+
+<article class="info-card">
+
+<span class="card-number">
+    03
+</span>
+
+<h3>
+    Power Optimization
+</h3>
+
+<ul>
+<li>
+      Block-level power and current decomposition
+</li>
+
+<li>
+      Bias-topology comparison
+</li>
+
+<li>
+      Replica-current optimization
+</li>
+
+<li>
+      Latch timing and power optimization
+</li>
+
+<li>
+      Power-performance-margin analysis
+</li>
+</ul>
+
+</article>
+
+<article class="info-card">
+
+<span class="card-number">
+    04
+</span>
+
+<h3>
+    Margin and Correlation
+</h3>
+
+<ul>
+<li>Eye-based receiver evaluation</li>
+
+<li>
+      Shmoo and operating-window analysis
+</li>
+
+<li>
+      Equalizer-code correlation
+</li>
+
+<li>
+      Pattern-dependent behavior analysis
+</li>
+
+<li>
+      Simulation-to-silicon correlation
+</li>
+</ul>
+
+</article>
+
+<article class="info-card">
+
+<span class="card-number">
+    05
+</span>
+
+<h3>
+    Product Execution
+</h3>
+
+<ul>
+<li>Architecture and circuit review</li>
+
+<li>
+      Failure reproduction and root-cause analysis
+</li>
+
+<li>
+      Layout and placement guidance
+</li>
+
+<li>
+      Timing and control validation
+</li>
+
+<li>
+      Silicon bring-up and issue closure
+</li>
+</ul>
+
+</article>
+
+<article class="info-card">
+
+<span class="card-number">
+    06
+</span>
+
+<h3>
+    Technical Leadership
+</h3>
+
+<ul>
+<li>
+      Receiver-domain technical direction
+</li>
+
+<li>
+      Cross-functional engineering decisions
+</li>
+
+<li>
+      Reusable architecture and evaluation frameworks
+</li>
+
+<li>
+      Design methodology development
+</li>
+
+<li>
+      Patent and publication development
+</li>
+</ul>
+
+</article>
+
+</div>
+
+</div>
+
+</section>
+
+<!-- ========================================================
+     CAREER
+     ======================================================== -->
+
+<section
+class="section section-alt"
+id="career"
+>
+
+<div class="container">
+
+<header class="section-header">
+
+<div>
+
+<span class="section-label">
+    Career
+</span>
+
+<h2 class="section-title">
+
+    Circuit foundation to
+
+<span class="gradient-text">
+      architecture leadership
+</span>
+
+</h2>
+
+</div>
+
+<p class="section-intro">
+  A career progression from memory-interface circuit design
+  and product debug into receiver architecture ownership,
+  methodology development, and cross-generation influence.
+</p>
+
+</header>
+
+<div class="timeline">
+
+<!-- ========================================================
+     MICRON TECHNOLOGY
+     ======================================================== -->
+
+<article class="timeline-item">
+
+<span
+class="timeline-dot"
+aria-hidden="true"
+></span>
+
+<div class="timeline-card">
+
+<div class="timeline-heading">
+
+<h3>
+        Principal Engineer,
+        Memory Interface IP Development
+</h3>
+
+<span class="timeline-period">
+        2022 – Present
+</span>
+
+</div>
+
+<div class="company">
+      Micron Technology
+</div>
+
+<p>
+      Lead DDR5 receiver architecture and signal-integrity
+      feasibility across multiple product generations, driving
+      receiver-path decisions for power, timing, signal integrity,
+      and product-margin scaling.
+</p>
+
+<ul>
+
+<li>
+        Own DDR5 Rx-path architecture and technical direction
+        across DQ, DQS, CK, and CA receiver functions.
+</li>
+
+<li>
+        Improve DQ receiver margin through Rx-path redesign,
+        timing-alignment strategy, and architecture-level
+        margin analysis.
+</li>
+
+<li>
+        Drive receiver-wide power optimization while preserving
+        timing and signal-integrity margins across multiple
+        DDR5 product generations.
+</li>
+
+<li>
+        Lead receiver SI feasibility and correlate circuit
+        behavior, timing, and system-level margin to guide
+        architecture and product decisions.
+</li>
+
+<li>
+        Develop advanced DQS / CLK receiver concepts addressing
+        future performance, robustness, power, and implementation
+        requirements.
+</li>
+
+<li>
+        Translate receiver architecture decisions and implementation
+        constraints across circuit, logic, layout, validation,
+        and product teams.
+</li>
+
+<li>
+        Convert project learning into reusable architecture
+        guidance, evaluation methodology, and technical
+        knowledge for subsequent receiver development.
+</li>
+
+</ul>
+
+</div>
+
+</article>
+
+<article class="timeline-item">
+
+<span class="timeline-dot"></span>
+
+<div class="timeline-card">
+
+<div class="timeline-heading">
+
+<h3>
+        Senior Engineer,
+        Memory Interface Architecture
+</h3>
+
+<span class="timeline-period">
+        2008 – 2022
+</span>
+
+</div>
+
+<div class="company">
+      SK hynix
+</div>
+
+<p>
+      Developed memory-interface architectures and circuits
+      spanning HBM, LPDDR, NAND-related, and emerging-memory
+      applications.
+</p>
+
+<ul>
+<li>
+        Contributed to HBM3 receiver architecture baseline
+        definition.
+</li>
+
+<li>
+        Developed LPDDR5, NAND, and PCRAM-related
+        interface solutions.
+</li>
+
+<li>
+        Led architecture feasibility and silicon
+        verification activities.
+</li>
+
+<li>
+        Developed receiver concepts carried across
+        product generations.
+</li>
+</ul>
+
+</div>
+
+</article>
+
+<article class="timeline-item">
+
+<span class="timeline-dot"></span>
+
+<div class="timeline-card">
+
+<div class="timeline-heading">
+
+<h3>
+        Memory Interface Circuit Engineering
+</h3>
+
+<span class="timeline-period">
+        Career Foundation
+</span>
+
+</div>
+
+<div class="company">
+      DRAM and High-Speed Interface Development
+</div>
+
+<p>
+      Built foundational expertise in circuit implementation,
+      characterization, failure analysis, silicon behavior,
+      and product-oriented engineering decisions.
+</p>
+
+</div>
+
+</article>
+
+</div>
+
+</div>
+
+</section>
+
+<!--
+========================================================
+PUBLICATIONS & PATENTS
+
+DRAFT SECTION
+
+Keep this section in the source code.
+Remove "hidden" when publication and patent
+information has been publicly verified.
+========================================================
+-->
+<section
+class="section"
+id="publications"
+hidden
+>
+
+<div class="container">
+
+<header class="section-header">
+
+<div>
+
+<span class="section-label">
+    Publications &amp; Patents
+</span>
+
+<h2 class="section-title">
+
+    Innovation converted into
+
+<span class="gradient-text">
+      reusable technical knowledge
+</span>
+
+</h2>
+
+</div>
+
+<p class="section-intro">
+  Selected research and intellectual-property areas addressing
+  high-speed performance, power, robustness, and implementation.
+</p>
+
+</header>
+
+<div class="publication-grid">
+
+<article class="publication-card">
+
+<span class="publication-type">
+    Technical Publication
+</span>
+
+<h3>
+    Enhanced Multi-Stage DQS Input Buffer Architecture
+    for High-Speed DDR5 SDRAM
+</h3>
+
+<p>
+    A high-speed receiver architecture addressing gain,
+    bandwidth, PVT robustness, power, and implementation
+    trade-offs.
+</p>
+
+<div class="tags">
+<span class="tag">First Author</span>
+<span class="tag">Accepted</span>
+<span class="tag">Presented</span>
+<span class="tag">DDR5</span>
+</div>
+
+</article>
+
+<article class="publication-card">
+
+<span class="publication-type">
+    Technical Publication
+</span>
+
+<h3>
+    Low-Power Design Methods for Advanced Memory Interfaces
+</h3>
+
+<p>
+    Circuit and architecture methods for reducing receiver
+    power while maintaining high-speed margin and product
+    compatibility.
+</p>
+
+<div class="tags">
+<span class="tag">Accepted</span>
+<span class="tag">Low Power</span>
+<span class="tag">Receiver Design</span>
+</div>
+
+</article>
+
+<article class="publication-card">
+
+<span class="publication-type">
+    Selected Patent Area
+</span>
+
+<h3>
+    PVT-Robust Receiver Compensation
+</h3>
+
+<p>
+    Compensation and control concepts designed to preserve
+    receiver behavior across process, voltage, temperature,
+    and implementation variation.
+</p>
+
+</article>
+
+<article class="publication-card">
+
+<span class="publication-type">
+    Selected Patent Area
+</span>
+
+<h3>
+    Low-Power Bias and Equalization Techniques
+</h3>
+
+<p>
+    Architecture concepts involving bias optimization,
+    gain control, equalization, margin improvement,
+    and power-aware receiver operation.
+</p>
+
+</article>
+
+</div>
+
+<div class="verification-note">
+  Before public release, verify conference titles, publication
+  dates, DOI references, author order, and public patent numbers.
+  Do not disclose unfiled inventions or confidential design details.
+</div>
+
+</div>
+
+</section>
+
+<!-- ========================================================
+     ABOUT
+     ======================================================== -->
+
+<section
+class="section section-alt"
+id="about"
+>
+
+<div class="container">
+
+<header class="section-header">
+
+<div>
+
+<span class="section-label">
+    About
+</span>
+
+<h2 class="section-title">
+
+    Architecture is the disciplined management of
+
+<span class="gradient-text">
+      engineering trade-offs
+</span>
+
+</h2>
+
+</div>
+
+<p class="section-intro">
+  A production-ready architecture must remain effective across
+  realistic channel, PVT, timing, layout, power, control,
+  and product operating conditions.
+</p>
+
+</header>
+
+<div class="about-grid">
+
+<aside class="about-quote">
+
+<blockquote>
+    “The strongest architecture is not the most complex circuit.
+    It is the simplest structure that delivers adequate margin
+    under real product constraints.”
+</blockquote>
+
+<p>
+    Technical leadership means improving the quality and
+    repeatability of engineering decisions across the organization.
+</p>
+
+</aside>
+
+<div class="about-copy">
+
+<p>
+    I am a Principal-level memory interface engineer with more
+    than 20 years of experience across advanced DRAM, HBM,
+    LPDDR, and NAND-related interface development.
+</p>
+
+<p>
+    My background covers architecture definition, analog and
+    mixed-signal circuit design, receiver power optimization,
+    PVT analysis, signal-margin evaluation, failure diagnosis,
+    silicon validation, and product bring-up.
+</p>
+
+<p>
+    My focus is translating system-level requirements into robust
+    circuit architectures, then maintaining architecture intent
+    through implementation, validation, product correlation,
+    and reusable methodology.
+</p>
+
+</div>
+
+</div>
+
+</div>
+
+</section>
+
+<!-- ========================================================
+     CONTACT
+     ======================================================== -->
+
+<section
+class="section"
+id="contact"
+>
+
+<div class="container">
+
+<div class="contact-panel">
+
+<div>
+
+<span class="eyebrow">
+    Professional Opportunities
+</span>
+
+<h2>
+
+    Building the next generation of
+
+<span class="gradient-text">
+      memory interfaces
+</span>
+
+</h2>
+
+<p>
+    Open to Principal, Distinguished Engineer, and advanced
+    memory-interface architecture opportunities involving DDR,
+    HBM, analog and mixed-signal IP, low-power receivers,
+    silicon correlation, and product-oriented technical leadership.
+</p>
+
+</div>
+
+<div class="contact-actions">
+
+<!-- EMAIL -->
+
+<a
+class="contact-link"
+href="mailto:jiniisuho@gmail.com"
+>
+
+<span>
+
+<span class="contact-label">
+      Email
+</span>
+
+<span class="contact-value">
+jiniisuho@gmail.com
+</span>
+
+</span>
+
+<span class="contact-arrow">
+    ↗
+</span>
+
+</a>
+
+<!-- LINKEDIN -->
+
+<a
+class="contact-link"
+href="https://www.linkedin.com/in/taejin-hwang-7ab28aa2/"
+target="_blank"
+rel="noopener noreferrer"
+>
+
+<span>
+
+<span class="contact-label">
+      LinkedIn
+</span>
+
+<span class="contact-value">
+      View LinkedIn Profile
+</span>
+
+</span>
+
+<span class="contact-arrow">
+    ↗
+</span>
+
+</a>
+
+<!-- GOOGLE SCHOLAR -->
+
+<a
+class="contact-link"
+href="https://scholar.google.com/citations?view_op=list_works&amp;hl=en&amp;user=5EFKmN0AAAAJ"
+target="_blank"
+rel="noopener noreferrer"
+>
+<span>
+<span class="contact-label">
+      Google Scholar
+</span>
+
+<span class="contact-value">
+      Publications &amp; Citations
+</span>
+</span>
+
+<span class="contact-arrow">
+    ↗
+</span>
+</a>
+
+<!-- LOCATION -->
+
+<div class="contact-link">
+
+<span>
+
+<span class="contact-label">
+      Location
+</span>
+
+<span class="contact-value">
+      United States
+</span>
+
+</span>
+
+<span class="contact-arrow">
+    ◎
+</span>
+
+</div>
+
+</div>
+
+</div>
+
+</div>
+
+</section>
+
+</main>
+
+<!-- ========================================================
+     FOOTER
+     ======================================================== -->
+
+<footer class="site-footer">
+
+<div class="container footer-content">
+
+<span>
+    © 2026 Taejin Hwang. All rights reserved.
+</span>
+
+<div class="footer-links">
+
+<a href="#top">
+      Back to top
+</a>
+
+<a href="#architectures">
+      Architectures
+</a>
+
+<a href="#contact">
+      Contact
+</a>
+
+</div>
+
+</div>
+
+</footer>
+
+</body>
+</html>
