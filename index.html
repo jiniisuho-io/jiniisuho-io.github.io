@@ -1058,6 +1058,136 @@ id="method"
      IMPACT
      ======================================================== -->
 
+
+<!-- ==========================================================
+DESIGN SKETCHES
+Redrawn from my design notebook.
+========================================================== -->
+
+<section class="section" id="sketches">
+
+<div class="container">
+
+<header class="section-header">
+
+<div>
+<span class="section-label">
+From My Notebook
+</span>
+<h2 class="section-title">
+Design <span class="gradient-text">Sketches</span>
+</h2>
+</div>
+
+<p class="section-intro">
+Hand-drawn first, then engineered. Four diagrams from my
+design notebook, redrawn.
+</p>
+
+</header>
+
+<div class="sketch-grid">
+
+<figure class="sketch-card">
+<div class="sketch-art">
+<svg viewBox="0 0 560 215" role="img" aria-label="Decision Feedback Equalizer block diagram">
+<defs><marker id="ar1" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z" fill="#91e5ff"/></marker></defs>
+<text x="6" y="106" fill="#f3f8fc" font-size="17" font-style="italic">r(n)</text>
+<line x1="46" y1="100" x2="72" y2="100" stroke="#91e5ff" stroke-width="2.5" marker-end="url(#ar1)"/>
+<rect x="76" y="68" width="142" height="64" rx="8" fill="rgba(53,200,255,.07)" stroke="#35c8ff" stroke-width="2"/>
+<text x="147" y="97" fill="#f3f8fc" font-size="17" text-anchor="middle" font-weight="700">N-tap LFE</text>
+<text x="147" y="120" fill="#8399ab" font-size="14" text-anchor="middle" font-style="italic">f(n)</text>
+<line x1="218" y1="100" x2="248" y2="100" stroke="#91e5ff" stroke-width="2.5" marker-end="url(#ar1)"/>
+<circle cx="270" cy="100" r="18" fill="rgba(53,200,255,.07)" stroke="#35c8ff" stroke-width="2"/>
+<text x="270" y="108" fill="#f3f8fc" font-size="20" text-anchor="middle" font-weight="700">+</text>
+<line x1="288" y1="100" x2="520" y2="100" stroke="#91e5ff" stroke-width="2.5" marker-end="url(#ar1)"/>
+<text x="498" y="86" fill="#f3f8fc" font-size="17" font-style="italic">e(n)</text>
+<line x1="440" y1="100" x2="440" y2="152" stroke="#91e5ff" stroke-width="2.5"/>
+<circle cx="440" cy="100" r="4" fill="#91e5ff"/>
+<rect x="362" y="152" width="156" height="46" rx="8" fill="rgba(53,200,255,.07)" stroke="#35c8ff" stroke-width="2"/>
+<text x="440" y="180" fill="#f3f8fc" font-size="15.5" text-anchor="middle" font-weight="700">Symbol Detector</text>
+<line x1="362" y1="175" x2="296" y2="175" stroke="#91e5ff" stroke-width="2.5" marker-end="url(#ar1)"/>
+<rect x="118" y="152" width="174" height="46" rx="8" fill="rgba(53,200,255,.07)" stroke="#35c8ff" stroke-width="2"/>
+<text x="205" y="172" fill="#f3f8fc" font-size="15.5" text-anchor="middle" font-weight="700">M-tap Feedback</text>
+<text x="205" y="191" fill="#8399ab" font-size="13.5" text-anchor="middle" font-style="italic">b(n&#8722;z)</text>
+<line x1="270" y1="152" x2="270" y2="124" stroke="#91e5ff" stroke-width="2.5" marker-end="url(#ar1)"/>
+<text x="252" y="146" fill="#f3f8fc" font-size="18">&#8722;</text>
+</svg>
+</div>
+<figcaption>
+<strong>Decision Feedback Equalizer</strong>
+<span>Decided data removes the post-cursor &#8212; no noise amplification.</span>
+</figcaption>
+</figure>
+
+<figure class="sketch-card">
+<div class="sketch-art">
+<svg viewBox="0 0 560 265" role="img" aria-label="PDN impedance versus frequency with package inductance and decap curves">
+<defs><marker id="ar2" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z" fill="#8399ab"/></marker></defs>
+<line x1="60" y1="225" x2="535" y2="225" stroke="#8399ab" stroke-width="2" marker-end="url(#ar2)"/>
+<line x1="60" y1="225" x2="60" y2="28" stroke="#8399ab" stroke-width="2" marker-end="url(#ar2)"/>
+<text x="30" y="40" fill="#f3f8fc" font-size="16" font-style="italic">Z<tspan dy="4" font-size="12">in</tspan></text>
+<line x1="120" y1="180" x2="330" y2="52" stroke="#ff8a8a" stroke-width="2" stroke-dasharray="7 6"/>
+<line x1="270" y1="52" x2="480" y2="180" stroke="#ff8a8a" stroke-width="2" stroke-dasharray="7 6"/>
+<path d="M60,180 L235,180 L300,72 L365,180 L530,180" fill="none" stroke="#35c8ff" stroke-width="3.5" stroke-linejoin="round"/>
+<circle cx="300" cy="72" r="5.5" fill="#ff8a8a"/>
+<text x="128" y="168" fill="#f3f8fc" font-size="15">(1) Low</text>
+<text x="300" y="42" fill="#f3f8fc" font-size="15" text-anchor="middle">(2) Resonance</text>
+<text x="438" y="168" fill="#f3f8fc" font-size="15">(3) High</text>
+<text x="150" y="92" fill="#8399ab" font-size="14.5">L-pkg curve</text>
+<text x="392" y="92" fill="#8399ab" font-size="14.5">C-decap curve</text>
+<text x="330" y="252" fill="#8399ab" font-size="14.5">Signal frequency (log Hz)</text>
+</svg>
+</div>
+<figcaption>
+<strong>VDDQ Decap &#8212; PDN Impedance</strong>
+<span>Package inductance vs. on-chip decap: mind the resonance.</span>
+</figcaption>
+</figure>
+
+<figure class="sketch-card">
+<div class="sketch-art">
+<svg viewBox="0 0 560 265" role="img" aria-label="Active CTLE frequency response: DC gain, zero, peaking pole">
+<defs><marker id="ar3" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z" fill="#8399ab"/></marker></defs>
+<line x1="60" y1="225" x2="535" y2="225" stroke="#8399ab" stroke-width="2" marker-end="url(#ar3)"/>
+<line x1="60" y1="225" x2="60" y2="28" stroke="#8399ab" stroke-width="2" marker-end="url(#ar3)"/>
+<text x="24" y="40" fill="#f3f8fc" font-size="16" font-style="italic">|Av|</text>
+<line x1="60" y1="172" x2="330" y2="172" stroke="#8399ab" stroke-width="1.6" stroke-dasharray="6 6"/>
+<path d="M60,172 L205,172 C255,172 285,150 315,118 C340,92 355,82 368,84 C395,88 420,140 460,180 C490,208 515,216 532,218" fill="none" stroke="#35c8ff" stroke-width="3.5" stroke-linecap="round"/>
+<circle cx="368" cy="84" r="5.5" fill="#52e3b1"/>
+<line x1="228" y1="225" x2="228" y2="180" stroke="#8399ab" stroke-width="1.4" stroke-dasharray="4 5"/>
+<line x1="312" y1="225" x2="312" y2="128" stroke="#8399ab" stroke-width="1.4" stroke-dasharray="4 5"/>
+<line x1="368" y1="225" x2="368" y2="96" stroke="#8399ab" stroke-width="1.4" stroke-dasharray="4 5"/>
+<text x="96" y="160" fill="#f3f8fc" font-size="15">DC gain</text>
+<text x="216" y="247" fill="#8399ab" font-size="14.5">&#969;<tspan dy="3" font-size="11">z</tspan></text>
+<text x="298" y="247" fill="#8399ab" font-size="14.5">&#969;<tspan dy="3" font-size="11">p1</tspan></text>
+<text x="352" y="247" fill="#8399ab" font-size="14.5">&#969;<tspan dy="3" font-size="11">p2</tspan></text>
+<text x="392" y="66" fill="#f3f8fc" font-size="15">Peak = g<tspan dy="3" font-size="11">m</tspan><tspan dy="-3">&#183;R</tspan><tspan dy="3" font-size="11">D</tspan></text>
+<text x="120" y="66" fill="#8399ab" font-size="14.5">&#969;z = 1 / (Rs&#183;Cs)</text>
+</svg>
+</div>
+<figcaption>
+<strong>Active CTLE</strong>
+<span>One zero, controlled peaking: DC gain set by Rs&#183;Cs degeneration.</span>
+</figcaption>
+</figure>
+
+<figure class="sketch-card">
+<div class="sketch-art">
+<svg viewBox="0 0 560 235" role="img" aria-label="Elmore delay RC ladder network"><line x1="40" y1="80" x2="78" y2="80" stroke="#91e5ff" stroke-width="2.5"/><circle cx="34" cy="118" r="17" fill="none" stroke="#35c8ff" stroke-width="2"/><text x="34" y="124" fill="#f3f8fc" font-size="15" text-anchor="middle" font-style="italic">V</text><line x1="34" y1="101" x2="34" y2="80" stroke="#91e5ff" stroke-width="2.5"/><line x1="34" y1="135" x2="34" y2="168" stroke="#91e5ff" stroke-width="2.5"/><path d="M22,168 L46,168 M27,176 L41,176 M31,184 L37,184" stroke="#8399ab" stroke-width="2" fill="none"/><text x="6" y="72" fill="#8399ab" font-size="14" font-style="italic">Vin</text><path d="M78,80 l8,-13 l8,13 l8,-13 l8,13 l8,-13 l8,13" fill="none" stroke="#f3f8fc" stroke-width="2.5" stroke-linejoin="round"/><text x="102" y="52" fill="#f3f8fc" font-size="15" text-anchor="middle" font-style="italic">R1</text><line x1="126" y1="80" x2="140" y2="80" stroke="#91e5ff" stroke-width="2.5"/><circle cx="140" cy="80" r="4.5" fill="#91e5ff"/><line x1="140" y1="80" x2="140" y2="118" stroke="#91e5ff" stroke-width="2.5"/><line x1="124" y1="118" x2="156" y2="118" stroke="#f3f8fc" stroke-width="2.5"/><line x1="124" y1="126" x2="156" y2="126" stroke="#f3f8fc" stroke-width="2.5"/><line x1="140" y1="126" x2="140" y2="150" stroke="#91e5ff" stroke-width="2.5"/><path d="M128,150 L152,150 M132,157 L148,157 M136,164 L144,164" stroke="#8399ab" stroke-width="2" fill="none"/><text x="164" y="126" fill="#f3f8fc" font-size="15" font-style="italic">C1</text><line x1="140" y1="80" x2="218" y2="80" stroke="#91e5ff" stroke-width="2.5"/><path d="M218,80 l8,-13 l8,13 l8,-13 l8,13 l8,-13 l8,13" fill="none" stroke="#f3f8fc" stroke-width="2.5" stroke-linejoin="round"/><text x="242" y="52" fill="#f3f8fc" font-size="15" text-anchor="middle" font-style="italic">R2</text><line x1="266" y1="80" x2="280" y2="80" stroke="#91e5ff" stroke-width="2.5"/><circle cx="280" cy="80" r="4.5" fill="#91e5ff"/><line x1="280" y1="80" x2="280" y2="118" stroke="#91e5ff" stroke-width="2.5"/><line x1="264" y1="118" x2="296" y2="118" stroke="#f3f8fc" stroke-width="2.5"/><line x1="264" y1="126" x2="296" y2="126" stroke="#f3f8fc" stroke-width="2.5"/><line x1="280" y1="126" x2="280" y2="150" stroke="#91e5ff" stroke-width="2.5"/><path d="M268,150 L292,150 M272,157 L288,157 M276,164 L284,164" stroke="#8399ab" stroke-width="2" fill="none"/><text x="304" y="126" fill="#f3f8fc" font-size="15" font-style="italic">C2</text><line x1="280" y1="80" x2="358" y2="80" stroke="#91e5ff" stroke-width="2.5"/><path d="M358,80 l8,-13 l8,13 l8,-13 l8,13 l8,-13 l8,13" fill="none" stroke="#f3f8fc" stroke-width="2.5" stroke-linejoin="round"/><text x="382" y="52" fill="#f3f8fc" font-size="15" text-anchor="middle" font-style="italic">R3</text><line x1="406" y1="80" x2="420" y2="80" stroke="#91e5ff" stroke-width="2.5"/><circle cx="420" cy="80" r="4.5" fill="#91e5ff"/><line x1="420" y1="80" x2="420" y2="118" stroke="#91e5ff" stroke-width="2.5"/><line x1="404" y1="118" x2="436" y2="118" stroke="#f3f8fc" stroke-width="2.5"/><line x1="404" y1="126" x2="436" y2="126" stroke="#f3f8fc" stroke-width="2.5"/><line x1="420" y1="126" x2="420" y2="150" stroke="#91e5ff" stroke-width="2.5"/><path d="M408,150 L432,150 M412,157 L428,157 M416,164 L424,164" stroke="#8399ab" stroke-width="2" fill="none"/><text x="444" y="126" fill="#f3f8fc" font-size="15" font-style="italic">C3</text><line x1="420" y1="80" x2="520" y2="80" stroke="#91e5ff" stroke-width="2.5"/><text x="478" y="62" fill="#f3f8fc" font-size="15" font-style="italic">Vout3</text><text x="280" y="212" fill="#f3f8fc" font-size="16.5" text-anchor="middle">TD = &#931; R&#183;C &#8212; shared resistance &#215; downstream capacitance</text></svg>
+</div>
+<figcaption>
+<strong>Elmore Delay &#8212; RC Ladder</strong>
+<span>Delay is the sum of shared resistance times downstream C.</span>
+</figcaption>
+</figure>
+
+</div>
+
+</div>
+
+</section>
+
 <section
 class="section section-alt"
 id="impact"
