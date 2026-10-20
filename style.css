@@ -1446,3 +1446,43 @@ font-size: .85rem;
 @media (max-width: 900px) {
 .blog-grid { grid-template-columns: 1fr; }
 }
+
+/* ==========================================================
+   HERO TITLE FIX (2026-10-19)
+   Phone screens: looser letter spacing, smaller title,
+   second line wraps cleanly instead of overlapping.
+   ========================================================== */
+
+.hero-title {
+letter-spacing: -.02em;
+}
+
+.hero-role {
+letter-spacing: -.01em;
+line-height: 1.15;
+}
+
+@media (max-width: 650px) {
+
+.hero-title {
+font-size: clamp(2.5rem, 11.5vw, 3.4rem);
+line-height: 1.03;
+letter-spacing: -.015em;
+}
+
+.hero-role {
+font-size: clamp(1.3rem, 5.8vw, 1.9rem);
+line-height: 1.22;
+letter-spacing: -.005em;
+margin-top: 10px;
+}
+
+}
+
+@media (max-width: 400px) {
+
+.hero-role {
+font-size: 1.22rem;
+}
+
+}
