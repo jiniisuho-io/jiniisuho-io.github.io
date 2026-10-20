@@ -1489,57 +1489,26 @@ font-size: 1.22rem;
 }
 
 /* ==========================================================
-   DESIGN SKETCHES (2026-10-20)
-   Redrawn notebook diagrams on a faint graph-paper panel.
+   CASE FIGURES (2026-10-20)
+   Redrawn notebook diagrams placed inside the case studies,
+   styled to match the case blocks.
    ========================================================== */
 
-.sketch-grid {
-display: grid;
-grid-template-columns: repeat(2, 1fr);
-gap: 20px;
-}
-
-.sketch-card {
-margin: 0;
-overflow: hidden;
+.case-figure {
+margin: 4px auto 20px;
+max-width: 600px;
+padding: 20px 18px 12px;
 border: 1px solid var(--border);
-border-radius: var(--radius);
-background: linear-gradient(145deg, rgba(15,41,66,.84), rgba(7,23,39,.8));
-}
-
-.sketch-art {
-padding: 26px 22px 10px;
+border-radius: 15px;
+background-color: rgba(5,20,34,.53);
 background-image:
-linear-gradient(rgba(145,229,255,.05) 1px, transparent 1px),
-linear-gradient(90deg, rgba(145,229,255,.05) 1px, transparent 1px);
+linear-gradient(rgba(145,229,255,.045) 1px, transparent 1px),
+linear-gradient(90deg, rgba(145,229,255,.045) 1px, transparent 1px);
 background-size: 22px 22px;
 }
 
-.sketch-art svg {
+.case-figure svg {
 display: block;
 width: 100%;
 height: auto;
-}
-
-.sketch-card figcaption {
-display: grid;
-gap: 3px;
-padding: 16px 22px 20px;
-}
-
-.sketch-card figcaption strong {
-font-size: 1.02rem;
-}
-
-.sketch-card figcaption span {
-color: var(--muted);
-font-size: .85rem;
-}
-
-@media (max-width: 900px) {
-
-.sketch-grid {
-grid-template-columns: 1fr;
-}
-
 }
