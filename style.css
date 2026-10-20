@@ -1454,12 +1454,13 @@ font-size: .85rem;
    ========================================================== */
 
 .hero-title {
-letter-spacing: -.02em;
+letter-spacing: 0;
 }
 
 .hero-role {
-letter-spacing: -.01em;
+letter-spacing: 0;
 line-height: 1.15;
+font-size: clamp(1.6rem, 4vw, 2.9rem);
 }
 
 @media (max-width: 650px) {
@@ -1467,13 +1468,13 @@ line-height: 1.15;
 .hero-title {
 font-size: clamp(2.5rem, 11.5vw, 3.4rem);
 line-height: 1.03;
-letter-spacing: -.015em;
+letter-spacing: 0;
 }
 
 .hero-role {
 font-size: clamp(1.3rem, 5.8vw, 1.9rem);
 line-height: 1.22;
-letter-spacing: -.005em;
+letter-spacing: 0;
 margin-top: 10px;
 }
 
