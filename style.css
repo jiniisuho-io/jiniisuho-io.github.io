@@ -1487,35 +1487,3 @@ font-size: 1.22rem;
 }
 
 }
-
-/* ==========================================================
-   IMPACT PHOTO (2026-10-20)
-   One wide photo above the impact levels. Kept quiet:
-   same border/radius as the cards, small credit line.
-   ========================================================== */
-
-.impact-photo {
-margin: 0 auto 34px;
-max-width: 940px;
-}
-
-.impact-photo img {
-display: block;
-width: 100%;
-height: clamp(200px, 34vw, 340px);
-object-fit: cover;
-border: 1px solid var(--border);
-border-radius: var(--radius);
-}
-
-.impact-photo figcaption {
-margin-top: 9px;
-color: var(--muted);
-font-size: .72rem;
-text-align: right;
-}
-
-.impact-photo figcaption a {
-color: var(--primary-light);
-text-decoration: underline;
-}
